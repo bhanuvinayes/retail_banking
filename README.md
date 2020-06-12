@@ -1,2 +1,2 @@
-# retail_banking
-Agile SRUM Group Case Study Work
+# Retail Banking
+Agile SRUM Group Case Study Work.
