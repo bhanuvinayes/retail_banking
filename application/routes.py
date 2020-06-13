@@ -86,4 +86,28 @@ def create_customer():
         flash('You are logged out. Please login again to continue')
         return redirect( url_for('login') )
 
-    return render_template('customerScreen.html')
+    return render_template('add_customer.html')
+
+@app.route('/search_customer', methods=['GET', 'POST'])
+def search_customer():
+    if request.method == 'POST':
+        ssn_id = request.form['ssn_id']
+        customer = Customers.query.filter_by(ssn_id = ssn_id).first()
+        if customer == None:
+            flash('No customer with that ssn_id exists')
+            return redirect( url_for('search_customer') )
+        else:
+            id = customer.id
+            cname = customer.cname
+            age = customer.age
+            address = customer.address
+            state = customer.state
+            city = customer.city
+            flash('Following details found')
+            return render_template('customer_found.html', customer = customer)
+    
+    return render_template('search_customer.html')
+
+@app.route('/customer_found')
+def customer_found():
+    return render_template('customer_found.html')

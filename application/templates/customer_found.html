@@ -1,0 +1,47 @@
+<h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p> {{ msg }} </p>
+        {% endfor %}
+    {% endif %}
+{% endwith%}
+</h1>
+<style>
+    table, th, td {
+      border: 1px solid black;
+    }
+    </style>
+
+<table>
+    <tr>
+        <th>Customer ID</th>
+        <td>{{ customer.id }}</td>
+    </tr>
+    <tr>
+        <th>Customer Name</th>
+        <td>{{ customer.cname }}</td>
+    </tr>
+    <tr>
+        <th>SSN ID</th>
+        <td>{{ customer.ssn_id }}</td>
+    </tr>
+    <tr>
+        <th>Age</th>
+        <td>{{ customer.age }}</td>
+    </tr>
+    <tr>
+        <th>Address</th>
+        <td>{{ customer.address }}</td>
+    </tr>
+    <tr>
+        <th>City</th>
+        <td>{{ customer.city }}</td>
+    </tr>
+    <tr>
+        <th>State</th>
+        <td>{{ customer.state }}</td>
+    </tr>
+</table>
+<br>
+<a href="{{ url_for(search_customer) }}" type="button">Serach Another Customer</a>
