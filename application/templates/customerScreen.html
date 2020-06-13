@@ -33,27 +33,34 @@
     }
 </style>
 <body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p> {{ msg }} </p>
+        {% endfor %}
+    {% endif %}
+{% endwith%}
     <h1>Create Customer Screen</h1>
 
     <div class="form">
-        <form>
+        <form action="" method="POST">
             <label for="ssn_id">Customer SSN id*</label>
-            <input type="text" id="ssn_id" name="ssn_id"><br><br>
+            <input type="text" id="ssn_id" name="ssn_id", required><br><br>
             <label for="cname">Customer Name*</label>
-            <input type="text" id="cname" name="cname"><br><br>
+            <input type="text" id="cname" name="cname" required><br><br>
             <label for="age">Age*</label>
-            <input type="number" id="age" name="age"><br><br>
+            <input type="number" id="age" name="age" required><br><br>
             <label for="address">Address*</label>
-            <input type="text" id="address" name="address"><br><br>
+            <input type="text" id="address" name="address" required><br><br>
             <label for="state">State*</label>
-            <select id="state" name="state">
+            <select id="state" name="state" required>
                 <option value="State1">State1</option>
                 <option value="State2">State2</option>
                 <option value="State3">State3</option>
                 <option value="State4">State4</option>
             </select><br><br>
             <label for="City">City*</label>
-            <select id="city" name="city">
+            <select id="city" name="city" required>
                 <option value="City1">City1</option>
                 <option value="City2">City2</option>
                 <option value="City3">City3</option>
