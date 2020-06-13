@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper{text-align: center; margin-top: 250px;}
+        .deletecust{display: inline-block; width: 500px;}
+        .deletecustheading{background-color:lightgray; padding-top: 1px; padding-bottom: 1px;}
+        .deleteform{display: inline-block; padding-top: 40px;}
+        a{text-decoration: none;}
+        .cancelbutton{float: right; margin-right: 20px;}
+        .decor{background-color:grey; color: white;}
+        .confirm{text-decoration-color: white;}
+        
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="deletecust">
+            <div class="deletecustheading"><p><b>Delete Customer</b></p></div>
+            <div class="deleteform">
+                <form action="">
+                    <table>
+                        <tr>
+                            <td><label for="ssn-id">SSN ID : </label></td>
+                            <td><input type="text" class="ssn-id" id="ssn-id" placeholder="12a5a6" required></td>
+                        </tr> 
+                        <tr>
+                            <td><label for="custid">Customer Id : </label></td>
+                            <td><input type="number" class="custid" id="custid" placeholder="1234567" required></td>
+                        </tr> 
+                        <tr>
+                            <td><label for="custname">Customer Name : </label></td>
+                            <td><input type="text" class="custname" id="custname" placeholder="Enter Name" required></td>
+                        </tr> 
+                        <tr>
+                            <td><label for="age">Age : </label></td>
+                            <td><input type="number" class="age" id="age" placeholder="Enter Age" required></td>
+                        </tr> 
+                        <tr>
+                            <td><label for="address">Address : </label></td>
+                            <td><input type="text" class="address" id="address" placeholder="Enter Address" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="confirmdel"><button type="submit" class="decor">Confirm Delete</span></button></label> </td>
+                           <td><label for="cancel"><button type="reset" class="cancelbutton"><a href="">Cancel</a></button></label> </td> 
+                        </tr> 
+                    </table>
+                </form>
+            </div>
+            </div>
+    </div>
+</body>
+</html>
