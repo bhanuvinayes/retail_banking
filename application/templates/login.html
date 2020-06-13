@@ -1,1 +1,22 @@
-<h1> Page Under Construction </h1>
+<title>Login</title>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p> {{ msg }} </p>
+        {% endfor %}
+    {% endif %}
+{% endwith%}
+<div> 
+    <form action="" method="post">
+        <label for="uname">User Name</label>
+        <br>
+        <input type="text" name="username" required minlength="8">
+        <br>
+        <label for="pass">Password</label>
+        <br>
+        <input type="password" name="password" required minlength="10">
+        <br><br>
+        <input type="submit" value="Login">
+    </form>
+</div>
+<a href="{{ url_for('registration') }}">register</a>
