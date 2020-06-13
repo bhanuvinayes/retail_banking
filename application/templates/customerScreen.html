@@ -33,13 +33,6 @@
     }
 </style>
 <body>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for msg in messages %}
-            <p> {{ msg }} </p>
-        {% endfor %}
-    {% endif %}
-{% endwith%}
     <h1>Create Customer Screen</h1>
 
     <div class="form">
