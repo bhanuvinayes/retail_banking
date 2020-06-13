@@ -1,4 +1,11 @@
 <title>Login</title>
+<style>
+    .loginwrapper{text-align: center;margin-top: 150px;}
+    .logindiv{display: inline-block; margin-top: 20px;}
+    .logindecor{margin-bottom: 20px;}
+    .logincust{display: inline-block; border: 1px solid black; padding: 5px; width: 300px;}
+    .loginheading{text-align: left; background-color: black; color: white;padding-top: 0.5px; padding-bottom: 0.5px; }
+</style>
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for msg in messages %}
@@ -6,17 +13,26 @@
         {% endfor %}
     {% endif %}
 {% endwith%}
-<div> 
-    <form action="" method="post">
-        <label for="uname">User Name</label>
-        <br>
-        <input type="text" name="username" required minlength="8">
-        <br>
-        <label for="pass">Password</label>
-        <br>
-        <input type="password" name="password" required minlength="10">
-        <br><br>
-        <input type="submit" value="Login">
-    </form>
+<div class="loginwrapper"> 
+    <div class="logincust">
+        <div class="loginheading"><p><b>Login</b></p></div>
+    <div class="logindiv">
+        <form action="" method="post">
+            <tr>
+                <td><label for="uname"><input type="text" name="username" required minlength="8" class="logindecor" placeholder="UserName"></label></td>
+            </tr>
+            <br>
+            <tr>
+                <td><label for="pass"><input type="password" name="password" required minlength="10" class="logindecor" placeholder="Password"></label></td>
+            </tr>
+            <br>
+            <tr>
+                <td><input type="submit" value="Login"></td>
+            </tr>
+        </form>
+        <a href="{{ url_for('registration') }}">register</a>
+    </div>
+    </div>
+
+    
 </div>
-<a href="{{ url_for('registration') }}">register</a>
