@@ -97,12 +97,6 @@ def search_customer():
             flash('No customer with that ssn_id exists')
             return redirect( url_for('search_customer') )
         else:
-            id = customer.id
-            cname = customer.cname
-            age = customer.age
-            address = customer.address
-            state = customer.state
-            city = customer.city
             flash('Following details found')
             return render_template('customer_found.html', customer = customer)
     
