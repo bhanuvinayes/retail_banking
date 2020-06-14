@@ -102,6 +102,7 @@ select{
   position: absolute;
 left: 150px;
 }
+
 /*footer css start*/
 
         .footer { position: fixed; left: 0; bottom: 0; width: 100%; background-color: black; color: blanchedalmond; text-align: center; }
