@@ -102,6 +102,7 @@ select{
   position: absolute;
 left: 150px;
 }
+
 /*footer css start*/
 
         .footer { position: fixed; left: 0; bottom: 0; width: 100%; background-color: black; color: blanchedalmond; text-align: center; }
@@ -139,6 +140,5 @@ left: 150px;
 .logincust{display: inline-block; border: 1px solid black; padding: 5px; width: 300px;}
 .loginheading{text-align: left; background-color: black; color: white;padding-top: 0.5px; padding-bottom: 0.5px; }
 /*login css end*/ 
-=======
 
 
