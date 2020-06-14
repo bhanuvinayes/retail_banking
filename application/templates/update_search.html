@@ -1,0 +1,21 @@
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p> {{ message }} </p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<form action="" method="POST">
+    <label for="ssn_id">SSN ID</label>
+    <input type="text" name="ssn_id" autofocus><br>
+    <p>OR</p>
+    <label for="customer_id">Customer ID</label>
+    <input type="text" name="customer_id" autofocus><br><br>
+    <input type="submit" value="Search">
+</form>
+
+<br><br><br><br>
+
+<p>SSN ID: {{ ssn_id }}</p>
+<br><br>
+<p>Customer ID: {{ customer_id }}</p>

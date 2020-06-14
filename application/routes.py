@@ -150,9 +150,9 @@ def delete_customer():
     return render_template('delete_customer.html')
 
 # TODO Complete view function
-@app.route('/update_customer')
+@app.route('/update_customer', methods=['GET', 'POST'])
 def update_customer():
-    return render_template('update_customer.html')
+    return render_template('update_customer.html', customer = request.args.get('customer'))
 
 # TODO Complete
 @app.route('/account')
@@ -170,3 +170,45 @@ def delete_all():
         flash('Deleted all customers record')
         return render_template('delete_all.html')
     return render_template('delete_all.html')
+
+
+@app.route('/update_search', methods=['GET', 'POST'])
+def update_search():
+    # if 'username' in session:
+        if request.method == 'POST':
+            ssn_id = request.form['ssn_id']
+            customer_id = request.form['customer_id']
+
+            if ssn_id != "":
+                customer = Customers.query.filter_by(ssn_id = ssn_id).first()
+                if customer == None:
+                    flash('No customer with that ssn_id exists')
+                    return redirect( url_for('update_search') )
+                else:
+                    flash('Following details found')
+                    return render_template('update_customer.html', customer = customer)
+            
+            if customer_id != "":
+                customer = Customers.query.filter_by(id = customer_id).first()
+                if customer == None:
+                    flash('No customer with that customer id exists')
+                    return redirect( url_for('update_search') )
+                else:
+                    flash('Following details found')
+                    return redirect( url_for('update_customer', customer = customer))
+            
+            if ssn_id == "" and customer_id == "":
+                flash('Enter either snn_id or customer id to search')
+                return redirect( url_for('update_search') )
+
+        # ssn_id = request.form['ssn_id']
+        # customer_id = request.form['customer_id']
+        # if customer_id == "":
+        #     return render_template('update_search.html', ssn_id = ssn_id, customer_id = customer_id)
+        # else:
+        #      return redirect( url_for('login') )
+    
+    # else:
+    #     return redirect( url_for('login') )
+    
+        return render_template('update_search.html')
