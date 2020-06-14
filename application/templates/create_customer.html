@@ -1,7 +1,16 @@
+<title>Add Account</title>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p> {{ msg }} </p>
+        {% endfor %}
+    {% endif %}
+{% endwith%}
+
 <h1 id="cst_head">Create Customer Screen</h1>
 
 <div class="form">
-    <form>
+    <form action="" method="POST">
         <label for="ssn_id">Customer SSN id*</label>
         <input type="text" id="ssn_id" name="ssn_id"><br><br>
         <label for="cname">Customer Name*</label>
