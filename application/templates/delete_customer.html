@@ -1,28 +1,14 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .wrapper{text-align: center; margin-top: 250px;}
-        .deletecust{display: inline-block; width: 500px;}
-        .deletecustheading{background-color:lightgray; padding-top: 1px; padding-bottom: 1px;}
-        .deleteform{display: inline-block; padding-top: 40px;}
-        a{text-decoration: none;}
-        .cancelbutton{float: right; margin-right: 20px;}
-        .decor{background-color:grey; color: white;}
-        .confirm{text-decoration-color: white;}
-        
-    </style>
-</head>
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for msg in messages %}
-            <p> {{ msg }} </p>
-        {% endfor %}
-    {% endif %}
-{% endwith%}
-<body>
+{% extends "layout.html" %}
+{% block title %} Delete Customer {% endblock %}
+
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p> {{ msg }} </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith%}
     <div class="wrapper">
         <div class="deletecust">
             <div class="deletecustheading"><p><b>Delete Customer</b></p></div>
@@ -34,11 +20,11 @@
                             <td><input type="text" class="ssn-id" name="ssn_id" placeholder="12a5a6" required></td>
                         </tr> 
                         <tr>
-                            <td><label for="custid">Customer Id : </label></td>
+                            <td><label for="customer_id">Customer Id : </label></td>
                             <td><input type="number" class="custid" name="customer_id" placeholder="1234567" required></td>
                         </tr> 
                         <tr>
-                            <td><label for="custname">Customer Name : </label></td>
+                            <td><label for="customer_name">Customer Name : </label></td>
                             <td><input type="text" class="custname" name="customer_name" placeholder="Enter Name" required></td>
                         </tr> 
                         <tr>
@@ -58,5 +44,4 @@
             </div>
             </div>
     </div>
-</body>
-</html>
+{% endblock %}

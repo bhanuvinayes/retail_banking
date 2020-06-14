@@ -1,4 +1,5 @@
 <title>Login</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for msg in messages %}
@@ -6,17 +7,26 @@
         {% endfor %}
     {% endif %}
 {% endwith%}
-<div> 
-    <form action="" method="post">
-        <label for="uname">User Name</label>
-        <br>
-        <input type="text" name="username" required minlength="8">
-        <br>
-        <label for="pass">Password</label>
-        <br>
-        <input type="password" name="password" required minlength="10">
-        <br><br>
-        <input type="submit" value="Login">
-    </form>
+<div class="loginwrapper"> 
+    <div class="logincust">
+        <div class="loginheading"><p><b>Login</b></p></div>
+    <div class="logindiv">
+        <form action="" method="post">
+            <tr>
+                <td><label for="uname"><input type="text" name="username" required minlength="8" class="logindecor" placeholder="UserName"></label></td>
+            </tr>
+            <br>
+            <tr>
+                <td><label for="pass"><input type="password" name="password" required minlength="10" class="logindecor" placeholder="Password"></label></td>
+            </tr>
+            <br>
+            <tr>
+                <td><input type="submit" value="Login"></td>
+            </tr>
+        </form>
+        <a href="{{ url_for('registration') }}">register</a>
+    </div>
+    </div>
+
+    
 </div>
-<p>To register, Click <a href="{{ url_for('registration') }}">here</a></p>
