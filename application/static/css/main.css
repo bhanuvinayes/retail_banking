@@ -135,10 +135,16 @@ left: 150px;
 
 /*login css start*/
 .loginwrapper{text-align: center;margin-top: 150px;}
-.logindiv{display: inline-block; margin-top: 20px;}
+.logindiv{display: inline-block; margin-top: 60px;}
 .logindecor{margin-bottom: 20px;}
 .logincust{display: inline-block; border: 1px solid black; padding: 5px; width: 300px;}
 .loginheading{text-align: left; background-color: black; color: white;padding-top: 0.5px; padding-bottom: 0.5px; }
+
+input[type = text] {margin-left: 450px;margin-top: -40px;
+}
+input[type=password]{margin-left: 450px;margin-top: -30px;}
+input[type=submit]{margin-left: 500px; margin-top: -20px;}
 /*login css end*/ 
+
 
 
