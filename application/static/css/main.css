@@ -102,3 +102,40 @@ select{
   position: absolute;
 left: 150px;
 }
+/*footer css start*/
+
+        .footer { position: fixed; left: 0; bottom: 0; width: 100%; background-color: black; color: blanchedalmond; text-align: center; }
+        
+        .space-between{display: flex; justify-content: space-between; padding-left:  40px; padding-right: 100px; padding-bottom: 20px; padding-top: 20px;}
+        .space-around { display: flex; justify-content: space-around; padding: 10px;}
+        .foot_word_edit {color: yellow;font-size: x-large; }
+        span{display: block; font-size: 17;}
+        .lastfooter{font-size: 17;display: inline;}
+        .footercontent1{flex-basis: 40%;text-align: start;}
+        .footercontent2{flex-basis: 20%;text-align: start;}
+        .footercontent3{flex-basis: 30%;text-align: start;}
+        .footcontentinfo{text-align: start;}
+        .endfooter{background-color: rgb(31, 29, 29);}
+        
+      
+/*footer css end*/
+/*delete customer css start*/
+        .wrapper{text-align: center; margin-top: 250px;}
+        .deletecust{display: inline-block; width: 500px;}
+        .deletecustheading{background-color:lightgray; padding-top: 1px; padding-bottom: 1px;}
+        .deleteform{display: inline-block; padding-top: 40px;}
+        a{text-decoration: none;}
+        .cancelbutton{float: right; margin-right: 20px;}
+        .decor{background-color:grey; color: white;}
+        .confirm{text-decoration-color: white;}
+        
+  
+/*delete customer css end*/
+
+/*login css start*/
+.loginwrapper{text-align: center;margin-top: 150px;}
+.logindiv{display: inline-block; margin-top: 20px;}
+.logindecor{margin-bottom: 20px;}
+.logincust{display: inline-block; border: 1px solid black; padding: 5px; width: 300px;}
+.loginheading{text-align: left; background-color: black; color: white;padding-top: 0.5px; padding-bottom: 0.5px; }
+/*login css end*/ 
