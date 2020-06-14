@@ -6,7 +6,7 @@ height: 162px;
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
-h1{
+#logo{
     color: yellow;
 display: inline-flex;
 position: absolute;
@@ -94,3 +94,29 @@ top: 124px;
 
 
 /*footer css end*/
+
+======
+#cst_head {
+  text-align: center;
+}
+.form{
+  position: absolute;
+left: 521px;
+}
+.btn{
+  background-color: black;
+  height: 33px;
+  width: 80px;
+  color: rgb(243, 243, 22);
+}
+pre{
+  color:red
+}
+input{
+  position: absolute;
+left: 150px;
+}
+select{
+  position: absolute;
+left: 150px;
+}
