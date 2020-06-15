@@ -13,9 +13,9 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="{{ url_for('create_customer') }}">Create Customer Account</a>
+                    <a href="{{ url_for('create_customer') }}">Create Customer</a>
                     <a href="{{ url_for('search_customer') }}">Search Customer</a>
-                    <a href="{{ url_for('delete_customer') }}">Delete Customer Account</a>
+                    <a href="{{ url_for('delete_customer') }}">Delete Customer</a>
                 </div>
             </div>
             <div class="dropdown">
@@ -23,7 +23,7 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="#">Link 1</a>
+                    <a href="{{ url_for('create_account') }}">Create Account</a>
                     <a href="#">Link 2</a>
                     <a href="#">Link 3</a>
                 </div>

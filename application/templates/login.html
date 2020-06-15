@@ -1,5 +1,5 @@
 <title>Login</title>
-<link rel="stylesheet" href="/application/static/css/main.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for msg in messages %}
@@ -26,7 +26,5 @@
         </form>
         <a href="{{ url_for('registration') }}">register</a>
     </div>
-    </div>
-
-    
+    </div>  
 </div>

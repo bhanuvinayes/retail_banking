@@ -1,0 +1,26 @@
+<h1 id="cst_head">Create Account</h1>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p> {{ msg }} </p>
+        {% endfor %}
+    {% endif %}
+{% endwith%}
+
+<div class="form">
+    <form action="" method="POST">
+        <label for="id">Customer id*</label>
+        <input type="text" name="id"><br><br>
+        <label for="account_type">Account type*</label>
+        <select id="Account type" name="account_type">
+            <option value="saving">savings</option>
+            <option value="current">current</option>
+        </select><br><br>
+        <label for="Deposit amount">Deposit amount*</label>
+        <input type="number" id="amount" name="deposit_amount"><br><br>
+        <pre>(*)Fields are compulsary</pre>
+        <button class="btn" type="submit">Submit</button>
+    </form>
+
+</div>

@@ -18,6 +18,14 @@ class Customers(db.Model):
     state = db.Column(db.String(20))
     city = db.Column(db.String(20))
 
+class Account(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    cust_id = db.Column(db.Integer)
+    acnt_type = db.Column(db.String(20))
+    acnt_status = db.Column(db.String(20))
+    bal = db.Column(db.Integer)
+
+
 @app.route('/registration', methods=['GET', 'POST'])
 def registration():
     if request.method == 'POST':
@@ -108,6 +116,7 @@ def search_customer():
         if request.method == 'POST':
             ssn_id = request.form['ssn_id']
             customer = Customers.query.filter_by(ssn_id = ssn_id).first()
+
             if customer == None:
                 flash('No customer with that ssn_id exists')
                 return redirect( url_for('search_customer') )
@@ -147,6 +156,9 @@ def delete_customer():
                 flash('Successfully deleted customer')
                 return redirect( url_for('delete_customer') )
     
+    else:
+        return redirect( url_for('login') )
+    
     return render_template('delete_customer.html')
 
 # TODO Complete view function
@@ -155,9 +167,44 @@ def update_customer():
     return render_template('update_customer.html', customer = request.args.get('customer'))
 
 # TODO Complete
-@app.route('/account')
-def account():
-    return render_template('account.html')
+@app.route('/create_account', methods=['GET', 'POST'])
+def create_account():
+    if 'username' in session:
+        if request.method == 'POST':
+            cust_id = request.form['id']
+            account_type = request.form['account_type']
+            deposit_amount = request.form['deposit_amount']
+
+            customer_id = Customers.query.filter_by( id = cust_id ).first()
+
+            if cust_ids == None:
+                flash('No customer exists with that id')
+                return redirect( url_for('create_account') )
+            
+            act_cust_ids = Account.query.filter_by( cust_id = customer_id ).all()
+            
+            if act_cust_ids == None:
+                account = Account( cust_id = int(cust_id), acnt_type = account_type, acnt_status = 'Active', bal = int(deposit_amount))
+                db.session.add(account)
+                db.session.commit()
+                flash('Account Created')
+                return redirect( url_for('create_account') )
+            
+            if act_cust_ids.cust_id == int(cust_id):
+                if act_cust_ids.acnt_type == account_type:
+                   
+                
+                else:
+                    account = Account( cust_id = int(cust_id), acnt_type = account_type, acnt_status = 'Active', bal = int(deposit_amount))
+                    db.session.add(account)
+                    db.session.commit()
+                    flash('Account Created')
+                    return redirect( url_for('create_account') )
+        
+    else:
+        return redirect( url_for('login') )
+
+    return render_template('create_account.html')
 
 
 @app.route('/delete_all', methods=['GET', 'POST'])
@@ -174,7 +221,7 @@ def delete_all():
 
 @app.route('/update_search', methods=['GET', 'POST'])
 def update_search():
-    # if 'username' in session:
+    if 'username' in session:
         if request.method == 'POST':
             ssn_id = request.form['ssn_id']
             customer_id = request.form['customer_id']
@@ -208,7 +255,21 @@ def update_search():
         # else:
         #      return redirect( url_for('login') )
     
-    # else:
-    #     return redirect( url_for('login') )
+    else:
+        return redirect( url_for('login') )
     
-        return render_template('update_search.html')
+    return render_template('update_search.html')
+
+
+@app.route('/search_accounts', methods=['GET', 'POST'])
+def search_accounts():
+    if request.form == 'POST':  
+        cust_id = request.form['cust_id']
+        
+
+        cust = Account.query.filter_by( id = cust_id ).first()
+        print('Hello')
+        print(cust.acnt_type)
+        return render_template('display_accounts.html', cus = cust )
+    
+    return render_template('display_accounts.html')
