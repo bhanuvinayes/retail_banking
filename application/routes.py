@@ -192,7 +192,7 @@ def create_account():
             
             if act_cust_ids.cust_id == int(cust_id):
                 if act_cust_ids.acnt_type == account_type:
-                   
+                    pass
                 
                 else:
                     account = Account( cust_id = int(cust_id), acnt_type = account_type, acnt_status = 'Active', bal = int(deposit_amount))
