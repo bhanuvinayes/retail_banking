@@ -17,6 +17,9 @@ class Customers(db.Model):
     address = db.Column(db.Integer)
     state = db.Column(db.String(20))
     city = db.Column(db.String(20))
+    cust_msg = db.Column(db.String(30))
+    cust_status = db.Column(db.String(20))
+    date = db.Column(db.DateTime, default=datetime.now)
 
 class Account(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -99,7 +102,7 @@ def create_customer():
             state = request.form['state']
             city = request.form['city']
 
-            customer = Customers(ssn_id=ssn_id, cname=cname, age=age, address=address, state=state, city=city)
+            customer = Customers(ssn_id=ssn_id, cname=cname, age=age, address=address, state=state, city=city, cust_msg = 'Customer Created', cust_status = 'Active')
             db.session.add(customer)
             db.session.commit()
             flash('Customer added successfully')
@@ -115,14 +118,29 @@ def search_customer():
     if 'username' in session:
         if request.method == 'POST':
             ssn_id = request.form['ssn_id']
-            customer = Customers.query.filter_by(ssn_id = ssn_id).first()
+            customer_id = request.form['customer_id']
 
-            if customer == None:
-                flash('No customer with that ssn_id exists')
+            if ssn_id != "":
+                customers = Customers.query.all()
+                if customers == None:
+                    flash('No customer with that ssn_id exists')
+                    return redirect( url_for('search_customer') )
+                else:
+                    flash('Following details found')
+                    return render_template('customer_found.html', customers = customers)
+            
+            if customer_id != "":
+                customers = Customers.query.all()
+                if customers == None:
+                    flash('No customer with that customer id exists')
+                    return redirect( url_for('search_customer') )
+                else:
+                    flash('Following details found')
+                    return render_template('customer_found.html', customers = customers)
+            
+            if ssn_id == "" and customer_id == "":
+                flash('Enter either snn_id or customer id to search')
                 return redirect( url_for('search_customer') )
-            else:
-                flash('Following details found')
-                return render_template('customer_found.html', customer = customer)
     
     else:
         return redirect( url_for('login') )
@@ -192,8 +210,8 @@ def create_account():
             
             if act_cust_ids.cust_id == int(cust_id):
                 if act_cust_ids.acnt_type == account_type:
-                   
-                
+                    pass
+
                 else:
                     account = Account( cust_id = int(cust_id), acnt_type = account_type, acnt_status = 'Active', bal = int(deposit_amount))
                     db.session.add(account)

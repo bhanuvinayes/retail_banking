@@ -1,17 +1,15 @@
-<title>Search Customer</title>
-
 {% with messages = get_flashed_messages() %}
     {% if messages %}
-        {% for msg in messages %}
-            <p> {{ msg }} </p>
+        {% for message in messages %}
+            <p> {{ message }} </p>
         {% endfor %}
     {% endif %}
-{% endwith%}
-
-<h1> Search customer </h1>
-
+{% endwith %}
 <form action="" method="POST">
-    <label for="ssn_id">SSN ID</label><br>
-    <input type="text" name="ssn_id" required>
+    <label for="ssn_id">SSN ID</label>
+    <input type="text" name="ssn_id" autofocus><br>
+    <p>OR</p>
+    <label for="customer_id">Customer ID</label>
+    <input type="text" name="customer_id" autofocus><br><br>
     <input type="submit" value="Search">
 </form>
