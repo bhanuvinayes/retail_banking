@@ -1,0 +1,59 @@
+<title>Account Status</title>
+
+{% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
+<p> {{ msg }} </p>
+{% endfor %} {% endif %} {% endwith%} {% extends "layout.html" %} {% block content %}
+<div class="form">
+
+    <h1>Account Status</h1><br>
+    <table>
+        <tr>
+            <th>Customer Id</th>
+            <th>Account Id</th>
+            <th>Account Type</th>
+            <th>Account Status</th>
+            <th>Message</th>
+            <th>Last Updated</th>
+            <th>Operations</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </table>
+    <br>
+    <button type="submit" value="Refresh the list">Refresh the list</button>
+</div>
+{% endblock %}
