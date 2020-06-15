@@ -1,0 +1,19 @@
+<h1> Search acoounts </h1>
+
+{% with messsages = get_flashed_messages() %}
+    {% if messsages %}
+        {% for msg in messsages %}
+            <p> {{ msg }} </p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<div class="form">
+    <form action="" method="POST">
+        <label for="account_id">Account ID</label><br>
+        <input type="text" name="account_id"><br>
+        <p> OR </p>
+        <label for="customer_id">Customer ID</label><br>
+        <input type="text" name="customer_id"><br><br>
+        <input type="submit" value="Search">
+    </form>
+</div>

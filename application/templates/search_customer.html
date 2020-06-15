@@ -1,8 +1,8 @@
-{% extends "layout.html" %}
+<!-- {% extends "layout.html" %}
 
 {% block title %} Search Customer {% endblock %}
 
-{% block content %}
+{% block content %} -->
 
 {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -17,9 +17,12 @@
 
     <form action="" method="POST">
         <label for="ssn_id">SSN ID</label><br>
-        <input type="text" name="ssn_id" required>
+        <input type="text" name="ssn_id">
+        <p> OR </p>
+        <label for="customer_id">Customer ID</label><br>
+        <input type="text" name="customer_id"><br><br>
         <input type="submit" value="Search">
     </form>
 </div>
 
-{% endblock %}
+<!-- {% endblock %} -->

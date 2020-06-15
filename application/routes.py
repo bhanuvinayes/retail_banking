@@ -27,7 +27,8 @@ class Account(db.Model):
     acnt_type = db.Column(db.String(20))
     acnt_status = db.Column(db.String(20))
     bal = db.Column(db.Integer)
-
+    acnt_msg =  db.Column(db.String(30))
+    date = db.Column(db.DateTime, default=datetime.now)
 
 @app.route('/registration', methods=['GET', 'POST'])
 def registration():
@@ -55,6 +56,7 @@ def registration():
         return redirect( url_for('login') )
     return render_template('emp_registration.html')
 
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -77,6 +79,7 @@ def login():
 
     return render_template('login.html')
 
+
 @app.route('/home')
 def home():
     if 'username' in session:
@@ -85,11 +88,13 @@ def home():
         flash('You are logged out. Please login again to continue')
         return redirect( url_for('login') )
 
+
 @app.route('/logout')
 def logout():
     session.pop('username', None)
     flash('You have been successfully logged out.')
     return redirect( url_for('login') )
+
 
 @app.route('/create_customer', methods=['GET', 'POST'])
 def create_customer():
@@ -102,16 +107,24 @@ def create_customer():
             state = request.form['state']
             city = request.form['city']
 
-            customer = Customers(ssn_id=ssn_id, cname=cname, age=age, address=address, state=state, city=city, cust_msg = 'Customer Created', cust_status = 'Active')
-            db.session.add(customer)
-            db.session.commit()
-            flash('Customer added successfully')
-            return redirect( url_for('create_customer') )
+            cust = Customers.query.filter_by( ssn_id = ssn_id ).first()
+
+            if cust == None:
+                customer = Customers(ssn_id=ssn_id, cname=cname, age=age, address=address, state=state, city=city, cust_msg = 'Customer Created', cust_status = 'Active')
+                db.session.add(customer)
+                db.session.commit()
+                flash('Customer added successfully')
+                return redirect( url_for('create_customer') )
+            
+            else:
+                flash('Customer with that SSN ID already exists')
+                return redirect( url_for('create_customer') )
     else:
         flash('You are logged out. Please login again to continue')
         return redirect( url_for('login') )
 
     return render_template('create_customer.html')
+
 
 @app.route('/search_customer', methods=['GET', 'POST'])
 def search_customer():
@@ -121,22 +134,22 @@ def search_customer():
             customer_id = request.form['customer_id']
 
             if ssn_id != "":
-                customers = Customers.query.all()
-                if customers == None:
+                customer = Customers.query.filter_by( ssn_id = ssn_id).first()
+                if customer == None:
                     flash('No customer with that ssn_id exists')
                     return redirect( url_for('search_customer') )
                 else:
                     flash('Following details found')
-                    return render_template('customer_found.html', customers = customers)
+                    return render_template('customer_found.html', customer = customer)
             
             if customer_id != "":
-                customers = Customers.query.all()
-                if customers == None:
+                customer = Customers.query.filter_by( id = customer_id).first()
+                if customer == None:
                     flash('No customer with that customer id exists')
                     return redirect( url_for('search_customer') )
                 else:
                     flash('Following details found')
-                    return render_template('customer_found.html', customers = customers)
+                    return render_template('customer_found.html', customer = customer)
             
             if ssn_id == "" and customer_id == "":
                 flash('Enter either snn_id or customer id to search')
@@ -147,12 +160,14 @@ def search_customer():
     
     return render_template('search_customer.html')
 
+
 @app.route('/customer_found')
 def customer_found():
     if 'username' in session:
         return render_template('customer_found.html')
     else:
         return redirect( url_for('login') )
+
 
 @app.route('/delete_customer', methods=['GET', 'POST'])
 def delete_customer():
@@ -179,44 +194,68 @@ def delete_customer():
     
     return render_template('delete_customer.html')
 
+
 # TODO Complete view function
 @app.route('/update_customer', methods=['GET', 'POST'])
 def update_customer():
     return render_template('update_customer.html', customer = request.args.get('customer'))
+
 
 # TODO Complete
 @app.route('/create_account', methods=['GET', 'POST'])
 def create_account():
     if 'username' in session:
         if request.method == 'POST':
-            cust_id = request.form['id']
+            savings = False
+            current = False
+
+            cust_id = request.form['cust_id']
             account_type = request.form['account_type']
             deposit_amount = request.form['deposit_amount']
 
             customer_id = Customers.query.filter_by( id = cust_id ).first()
-
-            if cust_ids == None:
+            
+            if customer_id == None:
                 flash('No customer exists with that id')
                 return redirect( url_for('create_account') )
             
-            act_cust_ids = Account.query.filter_by( cust_id = customer_id ).all()
+            acnt_cust_ids = Account.query.filter_by( cust_id = cust_id ).all()
             
-            if act_cust_ids == None:
-                account = Account( cust_id = int(cust_id), acnt_type = account_type, acnt_status = 'Active', bal = int(deposit_amount))
+            if not acnt_cust_ids:
+                account = Account( cust_id = int(cust_id), acnt_type = account_type, acnt_status = 'Active', bal = int(deposit_amount), acnt_msg = 'Account Created' )
                 db.session.add(account)
                 db.session.commit()
-                flash('Account Created')
-                return redirect( url_for('create_account') )
-            
-            if act_cust_ids.cust_id == int(cust_id):
-                if act_cust_ids.acnt_type == account_type:
-                    pass
+                if account_type == 'Savings':
+                    flash('Savings Account Created')
+                    return redirect( url_for('create_account') )
                 else:
-                    account = Account( cust_id = int(cust_id), acnt_type = account_type, acnt_status = 'Active', bal = int(deposit_amount))
+                    flash('Current Account Created')
+                    return redirect( url_for('create_account') )
+            
+            for acnt_cust_id in acnt_cust_ids:
+                if acnt_cust_id.acnt_type == 'Savings':
+                    savings = True
+                if acnt_cust_id.acnt_type == 'Current': 
+                    current = True
+            
+            if account_type == 'Savings':
+                if savings == False:
+                    account = Account( cust_id = int(cust_id), acnt_type = account_type, acnt_status = 'Active', bal = int(deposit_amount), acnt_msg = 'Account Created' )
                     db.session.add(account)
                     db.session.commit()
-                    flash('Account Created')
+                    flash('Savings Account Created')
                     return redirect( url_for('create_account') )
+
+            if account_type == 'Current':
+                if current == False:
+                    account = Account( cust_id = int(cust_id), acnt_type = account_type, acnt_status = 'Active', bal = int(deposit_amount), acnt_msg = 'Account Created' )
+                    db.session.add(account)
+                    db.session.commit()
+                    flash('Current Account Created')
+                    return redirect( url_for('create_account') )
+                
+            flash('Account already created')
+            return redirect( url_for('create_account') )
         
     else:
         return redirect( url_for('login') )
@@ -230,6 +269,8 @@ def delete_all():
         db.session.query(Employees).delete()
         db.session.commit()
         db.session.query(Customers).delete()
+        db.session.commit()
+        db.session.query(Account).delete()
         db.session.commit()
         flash('Deleted all customers record')
         return render_template('delete_all.html')
@@ -280,22 +321,103 @@ def update_search():
 
 @app.route('/search_accounts', methods=['GET', 'POST'])
 def search_accounts():
-    if request.form == 'POST':  
-        cust_id = request.form['cust_id']
-        
+    if 'username' in session:
+        if request.method == 'POST':
+            account_id = request.form['account_id']
+            customer_id = request.form['customer_id']
 
-        cust = Account.query.filter_by( id = cust_id ).first()
-        print('Hello')
-        print(cust.acnt_type)
-        return render_template('display_accounts.html', cus = cust )
+            if account_id != "":
+                account = Account.query.filter_by( id = account_id).first()
+                if account == None:
+                    flash('No customer with that account ID exists')
+                    return redirect( url_for('search_accounts') )
+                else:
+                    flash('Following details found')
+                    return render_template('account_found.html', account = account)
+            
+            if customer_id != "":
+                account = Account.query.filter_by( cust_id = customer_id).first()
+                if account == None:
+                    flash('No customer with that customer id exists')
+                    return redirect( url_for('search_accounts') )
+                else:
+                    flash('Following details found')
+                    return render_template('account_found.html', account = account)
+            
+            if account_id == "" and customer_id == "":
+                flash('Enter either account id or customer id to search')
+                return redirect( url_for('search_accounts') )
     
-    return render_template('display_accounts.html')
+    else:
+        return redirect( url_for('login') )
+    
+    return render_template('search_accounts.html')
 
 
 @app.route('/account_status')
 def account_status():
+    if 'username' in session:
+        accounts = Account.query.all()
+
+        if not accounts:
+            flash('No accounts exists in database')
+            return redirect( url_for('account_status') )
+        else:
+            return render_template('account_status.html', accounts = accounts)
+    else:
+        flash('You are logged out. Please login again')
+        return redirect( url_for('login') )
+
     return render_template('account_status.html')
 
-@app.route('/delete_account')
+
+@app.route('/delete_account', methods=['GET', 'POST'])
 def delete_account():
+    if 'username' in session:
+        if request.method == 'POST':
+            account_id = request.form['customer_id']
+            account_type = request.form['account_type']
+
+            account = Account.query.filter_by( id = account_id ).first()
+
+            if account == None:
+                flash('No account with that account id exists')
+                return redirect( url_for('delete_account') )
+            
+            if account.acnt_type == account_type:
+                db.session.delete(account)
+                db.session.commit()
+                flash('Account deleted successfully')
+                return redirect( url_for('delete_account') )
+            else:
+                if account_type == 'Current':
+                    flash('Theres no Current Account for that customer')
+                    return redirect( url_for('delete_account') )
+                else:
+                    flash('Thers no Savings Account for that customer')
+                    return redirect( url_for('delete_account') )
+        
+    else:
+        flash('You are logged out. Please login again')
+        return redirect( url_for('login') )
+
     return render_template('delete_account.html')
+
+
+@app.route('/customer_status')
+def customer_status():
+    if 'username' in session:
+        customers = Customers.query.all()
+
+        if not customers:
+            flash('There are customers')
+            return redirect( url_for('cusomer_status') )
+        
+        else:
+            return render_template( 'customer_status.html', customers = customers )
+    
+    else:
+        flash('You are logged out. Please login again')
+        return redirect( url_for( 'login' ) )
+    
+    return render_template('customer_status.html')

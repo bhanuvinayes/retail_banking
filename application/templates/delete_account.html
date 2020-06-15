@@ -1,8 +1,8 @@
-{% extends "layout.html" %}
+<!-- {% extends "layout.html" %}
 
 {% block title %} Delete Account {% endblock %}
 
-{% block content %}
+{% block content %} -->
 
 {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -15,19 +15,23 @@
 <div class="form">
 
     <h1>Delete Account</h1>
-    <form>
+    <form action="" method="POST">
         <label for="Account ID">Account ID</label>
-        <select id="Account ID" name="Account ID">
+        <input type="number" name="customer_id"><br><Br>
+        <!-- <select id="Account ID" name="Account ID">
                 <option value="type1">type1</option>
                 <option value="type2">type2</option>
                 <option value="type3">type3</option>
                 <option value="type4">type4</option>
-            </select><br><br>
+            </select><br><br> -->
         <label for="Account Type">Account Type</label>
-        <input type="text" name="id"><br><br><br>
+        <select id="Account Type" name="account_type">
+            <option value="Savings"> Savings </option>
+            <option value="Current"> Current </option>
+        </select><br><br><br>
         <button type="Delete Account">Delete Account</button>
     </form>
 
 </div>
 
-{% endblock %}
+<!-- {% endblock %} -->

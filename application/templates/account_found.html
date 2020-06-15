@@ -1,0 +1,46 @@
+<h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p> {{ msg }} </p>
+        {% endfor %}
+    {% endif %}
+{% endwith%}
+</h1>
+
+<style>
+    table, th, td {
+      border: 1px solid black;
+    }
+</style>
+
+<table>
+    <tr>
+        <th>Account ID</th>
+        <td>{{ account.id }}</td>
+    </tr>
+    <tr>
+        <th>Customer ID</th>
+        <td>{{ account.cust_id }}</td>
+    </tr>
+    <tr>
+        <th>Account Type</th>
+        <td>{{ account.acnt_type }}</td>
+    </tr>
+    <tr>
+        <th>Account Status</th>
+        <td>{{ account.acnt_status }}</td>
+    </tr>
+    <tr>
+        <th>Balance</th>
+        <td>{{ account.bal }}</td>
+    </tr>
+    <tr>
+        <th>Account Message</th>
+        <td>{{ account.acnt_msg }}</td>
+    </tr>
+    <tr>
+        <th>Date</th>
+        <td>{{ account.date }}</td>
+    </tr>
+</table>
