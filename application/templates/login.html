@@ -1,5 +1,7 @@
 <title>Login</title>
+
 <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for msg in messages %}
@@ -7,6 +9,7 @@
         {% endfor %}
     {% endif %}
 {% endwith%}
+
 <div class="loginwrapper"> 
     <div class="logincust">
         <div class="loginheading"><p><b>Login</b></p></div>
@@ -24,7 +27,7 @@
                 <td><input type="submit" value="Login"></td>
             </tr>
         </form>
-        <a href="{{ url_for('registration') }}">register</a>
+        Don't have account? Click <a href="{{ url_for('registration') }}">here</a> to register.
     </div>
     </div>  
 </div>

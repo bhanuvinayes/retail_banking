@@ -1,6 +1,11 @@
-{% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
-<p> {{ msg }} </p>
-{% endfor %} {% endif %} {% endwith%}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p> {{ msg }} </p>
+        {% endfor %}
+    {% endif %}
+{% endwith%}
+
 <div class="form">
     <form action="" method="POST">
         <label for="email">Email ID</label>

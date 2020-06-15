@@ -1,8 +1,17 @@
-<title>Search Customer</title>
+{% extends "layout.html" %}
 
-{% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
-<p> {{ msg }} </p>
-{% endfor %} {% endif %} {% endwith%} {% extends "layout.html" %} {% block content %}
+{% block title %} Search Customer {% endblock %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p> {{ msg }} </p>
+        {% endfor %}
+    {% endif %}
+{% endwith%}
+
 <div class="form">
     <h1> Search customer </h1>
 
@@ -12,6 +21,5 @@
         <input type="submit" value="Search">
     </form>
 </div>
-
 
 {% endblock %}

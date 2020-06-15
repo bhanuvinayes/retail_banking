@@ -290,3 +290,12 @@ def search_accounts():
         return render_template('display_accounts.html', cus = cust )
     
     return render_template('display_accounts.html')
+
+
+@app.route('/account_status')
+def account_status():
+    return render_template('account_status.html')
+
+@app.route('/delete_account')
+def delete_account():
+    return render_template('delete_account.html')
