@@ -1,150 +1,280 @@
 header {
     background-color: black;
-height: 162px;
+    height: 116px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+html {
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
 }
-#logo{
+
+#logo {
     color: yellow;
-display: inline-flex;
-position: absolute;
-left: 232px;
+    display: inline-flex;
+    position: absolute;
+    left: 232px;
 }
 
 .navbar {
-  overflow: hidden;
-  background-color: rgb(255, 255, 0);
+    overflow: hidden;
+    background-color: rgb(255, 255, 0);
 }
 
 .navbar a {
-  float: left;
-  font-size: 16px;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+    float: left;
+    font-size: 16px;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
 .dropdown {
-  float: left;
-  overflow: hidden;
+    float: left;
+    overflow: hidden;
 }
 
 .dropdown .dropbtn {
-  font-size: 16px;  
-  border: none;
-  outline: none;
-  color: black;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: black;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: red;
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+    background-color: red;
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
 .dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
 }
 
 .dropdown-content a:hover {
-  background-color: #ddd;
+    background-color: #ddd;
 }
 
 .dropdown:hover .dropdown-content {
-  display: block;
+    display: block;
 }
-.links{
+
+.links {
     width: 910px;
-position: absolute;
-left: 231px;
-top: 124px;
+    position: absolute;
+    left: 231px;
+    top: 70px;
 }
+
 #cst_head {
-  text-align: center;
+    text-align: center;
 }
-.form{
-  position: absolute;
-left: 521px;
+
+.form {
+    position: absolute;
+    left: 521px;
+    top: 139px;
+    width: 428px;
 }
-.btn{
-  background-color: black;
-  height: 33px;
-  width: 80px;
-  color: rgb(243, 243, 22);
+
+.btn {
+    background-color: black;
+    height: 33px;
+    width: 80px;
+    color: rgb(243, 243, 22);
 }
-pre{
-  color:red
+
+pre {
+    color: red
 }
-input{
-  position: absolute;
-left: 150px;
+
+input {
+    position: absolute;
+    left: 150px;
 }
-select{
-  position: absolute;
-left: 150px;
+
+select {
+    position: absolute;
+    left: 150px;
 }
+
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+
+/* delete customer css start*/
+
+.wrapper {
+    text-align: center;
+    margin-top: 250px;
+}
+
+.deletecust {
+    display: inline-block;
+    width: 500px;
+}
+
+.deletecustheading {
+    background-color: lightgray;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.deleteform {
+    display: inline-block;
+    padding-top: 40px;
+}
+
+.taga {
+    text-decoration: none;
+}
+
+.cancelbutton {
+    float: right;
+    margin-right: 20px;
+}
+
+.decor {
+    background-color: grey;
+    color: white;
+}
+
+.confirm {
+    text-decoration-color: white;
+}
+
+
+/*delete customer css end*/
+
 
 /*footer css start*/
 
-        .footer { position: fixed; left: 0; bottom: 0; width: 100%; background-color: black; color: blanchedalmond; text-align: center; }
-        
-        .space-between{display: flex; justify-content: space-between; padding-left:  40px; padding-right: 100px; padding-bottom: 20px; padding-top: 20px;}
-        .space-around { display: flex; justify-content: space-around; padding: 10px;}
-        .foot_word_edit {color: yellow;font-size: x-large; }
-        span{display: block; font-size: 17;}
-        .lastfooter{font-size: 17;display: inline;}
-        .footercontent1{flex-basis: 40%;text-align: start;}
-        .footercontent2{flex-basis: 20%;text-align: start;}
-        .footercontent3{flex-basis: 30%;text-align: start;}
-        .footcontentinfo{text-align: start;}
-        .endfooter{background-color: rgb(31, 29, 29);}
-        
-      
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: blanchedalmond;
+    text-align: center;
+}
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 40px;
+    padding-right: 100px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.space-around {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.foot_word_edit {
+    color: yellow;
+    font-size: x-large;
+}
+
+span {
+    display: block;
+    font-size: 17;
+}
+
+.lastfooter {
+    font-size: 17;
+    display: inline;
+}
+
+.footercontent1 {
+    flex-basis: 40%;
+    text-align: start;
+}
+
+.footercontent2 {
+    flex-basis: 20%;
+    text-align: start;
+}
+
+.footercontent3 {
+    flex-basis: 30%;
+    text-align: start;
+}
+
+.footcontentinfo {
+    text-align: start;
+}
+
+.endfooter {
+    background-color: rgb(31, 29, 29);
+}
+
+
 /*footer css end*/
-/*delete customer css start*/
-        .wrapper{text-align: center; margin-top: 250px;}
-        .deletecust{display: inline-block; width: 500px;}
-        .deletecustheading{background-color:lightgray; padding-top: 1px; padding-bottom: 1px;}
-        .deleteform{display: inline-block; padding-top: 40px;}
-        a{text-decoration: none;}
-        .cancelbutton{float: right; margin-right: 20px;}
-        .decor{background-color:grey; color: white;}
-        .confirm{text-decoration-color: white;}
-        
-  
-/*delete customer css end*/
+
 
 /*login css start*/
-.loginwrapper{text-align: center;margin-top: 150px;}
-.logindiv{display: inline-block; margin-top: 60px;}
-.logindecor{margin-bottom: 20px;}
-.logincust{display: inline-block; border: 1px solid black; padding: 5px; width: 300px;}
-.loginheading{text-align: left; background-color: black; color: white;padding-top: 0.5px; padding-bottom: 0.5px; }
 
-input[type = text] {margin-left: 450px;margin-top: -40px;
+.loginwrapper {
+    text-align: center;
+    margin-top: 150px;
 }
-input[type=password]{margin-left: 450px;margin-top: -30px;}
-input[type=submit]{margin-left: 500px; margin-top: -20px;}
-/*login css end*/ 
+
+.logindiv {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.logindecor {
+    margin-bottom: 20px;
+}
+
+.logincust {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 5px;
+    width: 300px;
+}
+
+.loginheading {
+    text-align: left;
+    background-color: black;
+    color: white;
+    padding-top: 0.5px;
+    padding-bottom: 0.5px;
+}
 
 
-
+/*login css end*/

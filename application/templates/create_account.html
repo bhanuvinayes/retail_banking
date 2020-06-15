@@ -1,14 +1,10 @@
-<h1 id="cst_head">Create Account</h1>
-
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for msg in messages %}
-            <p> {{ msg }} </p>
-        {% endfor %}
-    {% endif %}
-{% endwith%}
+<title>Create Account</title>
+{% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
+<p> {{ msg }} </p>
+{% endfor %} {% endif %} {% endwith%} {% extends "layout.html" %} {% block content %}
 
 <div class="form">
+    <h1 id="cst_head">Create Account</h1>
     <form action="" method="POST">
         <label for="id">Customer id*</label>
         <input type="text" name="id"><br><br>
@@ -23,4 +19,4 @@
         <button class="btn" type="submit">Submit</button>
     </form>
 
-</div>
+</div>{% endblock %}

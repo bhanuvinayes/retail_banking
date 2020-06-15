@@ -1,0 +1,21 @@
+<title>Deposit</title>
+{% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
+<p> {{ msg }} </p>
+{% endfor %} {% endif %} {% endwith%} {% extends "layout.html" %} {% block content %}
+
+<div class="form">
+    <h1>Deposit Money</h1>
+
+    <form>
+        <label for="id">Customer ID:</label><br><br>
+        <label for="id">Account ID:</label><br><br>
+        <label for="Account Type">Account Type:</label><br><br>
+        <label for="Balance">Balance:</label><br><br>
+        <label for="Amount">Withdraw Amount:</label>
+        <input type="number" id="amount" name="id"><br><br>
+        <button type="Submit">Submit</button>
+    </form>
+
+</div>
+
+{% endblock %}
