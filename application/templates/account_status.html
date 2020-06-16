@@ -25,42 +25,17 @@
             <th>Last Updated</th>
             <th>Operations</th>
         </tr>
+        {% for account in accounts %}
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th> {{ account.cust_id }} </th>
+            <th> {{ account.id }} </th>
+            <th> {{ account.acnt_type }} </th>
+            <th> {{ account.acnt_status }} </th>
+            <th> {{ account.acnt_msg }} </th>
+            <th> {{ account.date }} </th>
+            <th> <a href="#">Refresh</a> </th>
         </tr>
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
+        {% endfor %}
     </table>
     <br>
     <button type="submit" value="Refresh the list">Refresh the list</button>

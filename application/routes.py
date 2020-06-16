@@ -253,9 +253,13 @@ def create_account():
                     db.session.commit()
                     flash('Current Account Created')
                     return redirect( url_for('create_account') )
-                
-            flash('Account already created')
-            return redirect( url_for('create_account') )
+            
+            if account_type == 'Savings':    
+                flash('Savings Account already created for this customer')
+                return redirect( url_for('create_account') )
+            else:
+                flash('Current Account already created for this customer')
+                return redirect( url_for('create_account') )
         
     else:
         return redirect( url_for('login') )
@@ -375,7 +379,7 @@ def account_status():
 def delete_account():
     if 'username' in session:
         if request.method == 'POST':
-            account_id = request.form['customer_id']
+            account_id = request.form['account_id']
             account_type = request.form['account_type']
 
             account = Account.query.filter_by( id = account_id ).first()
@@ -421,3 +425,56 @@ def customer_status():
         return redirect( url_for( 'login' ) )
     
     return render_template('customer_status.html')
+
+
+@app.route('/deposit')
+def deposit():
+    if 'username' in session:
+        if request.method == 'POST':
+            acnt_id = request.form['acnt_id']
+            cust_id = request.form['cust_id']
+            acnt_type = request.form['acnt_type']
+            amount = request.form['amount']
+
+            return render_template('Deposit.html')
+        
+    else:
+        flash('You are logged out. Please login again')
+        return redirect( url_for('login') )
+    
+    return render_template('Deposit.html')
+
+@app.route('/withdraw')
+def withdraw():
+    if 'username' in session:
+        if request.method == 'POST':
+            acnt_id = request.form['acnt_id']
+            cust_id = request.form['cust_id']
+            acnt_type = request.form['acnt_type']
+            amount = request.form['amount']
+
+            return render_template('withdraw.html')
+        
+    else:
+        flash('You are logged out. Please login again')
+        return redirect( url_for('login') )
+    
+    return render_template('withdraw.html')
+
+
+@app.route('/transfer')
+def transfer():
+    if 'username' in session:
+        if request.method == 'POST':
+            cust_id = request.form['cust_id']
+            src_acnt_type = request.form['src_acnt_type']
+            tar_acnt_type = request.form['tar_acnt_type']
+            amount = request.form['amount']
+
+            return render_template('Transfer.html')
+    
+    else:
+        flash('You are logged out. Please login again')
+        return redirect( url_for('login') )
+    
+    return render_template('Transfer.html')

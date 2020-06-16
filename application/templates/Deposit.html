@@ -1,22 +1,38 @@
-{% extends "layout.html" %} {% block title %} Deposit {% endblock %} {% block content %} {% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
-<p> {{ msg }} </p>
-{% endfor %} {% endif %} {% endwith%}
+{% extends "layout.html" %} 
+
+{% block title %} Deposit {% endblock %}
+
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p> {{ msg }} </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith%}
+
 <style>
     input {
         position: absolute;
         left: 150px;
     }
 </style>
+
 <div class="form">
     <h1>Deposit Money</h1>
 
     <form>
-        <label for="id">Customer ID:</label><br><br>
-        <label for="id">Account ID:</label><br><br>
-        <label for="Account Type">Account Type:</label><br><br>
-        <label for="Balance">Balance:</label><br><br>
-        <label for="Amount">Withdraw Amount:</label>
-        <input type="number" id="amount" name="id"><br><br>
+        <label for="cust_id">Customer ID:</label>
+        <input type="number" name="cust_id"><br><br>
+        <label for="acnt_id">Account ID:</label>
+        <input type="number" name="acnt_id"><br><br>
+        <label for="acnt_type">Account Type:</label>
+        <select id="Account type" name="acnt_type">
+            <option value="Saving">Savings</option>
+            <option value="Current">Current</option>
+        </select><br><br>
+        <label for="amount">Deposit Amount:</label>
+        <input type="number" id="amount" name="amount"><br><br>
         <button type="Submit">Submit</button>
     </form>
 

@@ -1,21 +1,33 @@
-<h1> Search acoounts </h1>
+{% extends "layout.html" %} 
+{% block title %} Search Customer {% endblock %} 
 
-{% with messsages = get_flashed_messages() %} {% if messsages %} {% for msg in messsages %}
-<p> {{ msg }} </p>
-{% endfor %} {% endif %} {% endwith %}
+{% block content %} 
+
+{% with messsages = get_flashed_messages() %} 
+    {% if messsages %}
+        {% for msg in messsages %}
+            <p> {{ msg }} </p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
 <style>
     input {
         position: absolute;
         left: 150px;
     }
 </style>
+
 <div class="form">
+    <h1> Search account </h1>
     <form action="" method="POST">
-        <label for="account_id">Account ID</label><br>
-        <input type="text" name="account_id"><br>
-        <p> OR </p>
-        <label for="customer_id">Customer ID</label><br>
+        <label for="account_id">Account ID</label>
+        <input type="text" name="account_id"><br><br>
+        <p style="text-align: center;"> OR </p><br>
+        <label for="customer_id">Customer ID</label>
         <input type="text" name="customer_id"><br><br>
-        <input type="submit" value="Search">
+        <button class="btn" type="submit">Search</button>
     </form>
 </div>
+
+{% endblock %}

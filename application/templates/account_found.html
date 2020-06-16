@@ -1,12 +1,15 @@
-<h1>
-    {% with messages = get_flashed_messages() %}
+{% extends "layout.html" %} 
+{% block title %} Search Customer {% endblock %} 
+
+{% block content %} 
+
+{% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for msg in messages %}
-            <p> {{ msg }} </p>
+            <p style="font-weight: bold;"> {{ msg }} </p>
         {% endfor %}
     {% endif %}
 {% endwith%}
-</h1>
 
 <style>
     table, th, td {
@@ -44,3 +47,5 @@
         <td>{{ account.date }}</td>
     </tr>
 </table>
+
+{% endblock %}

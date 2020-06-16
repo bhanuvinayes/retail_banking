@@ -7,7 +7,7 @@
     <div class="links">
         <nav class="navbar">
 
-            <div class="home"><a href="#">Home</a></div>
+            <div class="home"><a href="{{ url_for('home') }}">Home</a></div>
             <div class="dropdown">
                 <button class="dropbtn">Customer Management
                     <i class="fa fa-caret-down"></i>
@@ -24,7 +24,7 @@
                 </button>
                 <div class="dropdown-content">
                     <a href="{{ url_for('create_account') }}">Create Account</a>
-                    <a href="{{ url_for('account_status') }}">Account Status</a>
+                    <a href="{{ url_for('search_accounts') }}">Search Accounts</a>
                     <a href="{{ url_for('delete_account') }}">Delete Account</a>
                 </div>
             </div>
@@ -33,9 +33,8 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
+                    <a href="{{ url_for('customer_status') }}"> Customer Status </a>
+                    <a href="{{ url_for('account_status') }}"> Account Status </a>
                 </div>
             </div>
             <div class="dropdown">
@@ -43,9 +42,9 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
+                    <a href="{{ url_for('deposit') }}">Deposit Amount</a>
+                    <a href="{{ url_for('withdraw') }}">Withdraw Amount</a>
+                    <a href="{{ url_for('transfer') }}">Transfer Amount</a>
                 </div>
             </div>
 
