@@ -1,28 +1,19 @@
-<!-- {% extends "layout.html" %}
-
-{% block title %} Search Customer {% endblock %}
-
-{% block content %} -->
-
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for msg in messages %}
-            <p> {{ msg }} </p>
-        {% endfor %}
-    {% endif %}
-{% endwith%}
-
+{% extends "layout.html" %} {% block title %} Search Customer {% endblock %} {% block content %} {% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
+<p> {{ msg }} </p>
+{% endfor %} {% endif %} {% endwith%}
+<style>
+    input {
+        position: absolute;
+        left: 150px;
+    }
+</style>
 <div class="form">
     <h1> Search customer </h1>
-
     <form action="" method="POST">
-        <label for="ssn_id">SSN ID</label><br>
-        <input type="text" name="ssn_id">
-        <p> OR </p>
-        <label for="customer_id">Customer ID</label><br>
-        <input type="text" name="customer_id"><br><br>
-        <input type="submit" value="Search">
+        <label for="ssn_id">SSN ID</label>
+        <input type="text" name="ssn_id" required><br><br>
+        <button class="btn" type="submit">Submit</button>
     </form>
 </div>
 
-<!-- {% endblock %} -->
+{% endblock %}

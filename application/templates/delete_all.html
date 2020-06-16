@@ -1,11 +1,12 @@
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for msg in messages %}
-            <p> {{ msg }} </p>
-        {% endfor %}
-    {% endif %}
-{% endwith%}
-
+{% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
+<p> {{ msg }} </p>
+{% endfor %} {% endif %} {% endwith%}
+<style>
+    input {
+        position: absolute;
+        left: 150px;
+    }
+</style>
 <div class="form">
     <form action="" method="POST">
         <input type="submit" value="Delete all">
