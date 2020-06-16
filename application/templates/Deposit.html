@@ -1,17 +1,12 @@
-{% extends "layout.html" %}
-
-{% block title %} Deposit {% endblock %}
-
-{% block content %}
-
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for msg in messages %}
-            <p> {{ msg }} </p>
-        {% endfor %}
-    {% endif %}
-{% endwith%}
-
+{% extends "layout.html" %} {% block title %} Deposit {% endblock %} {% block content %} {% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
+<p> {{ msg }} </p>
+{% endfor %} {% endif %} {% endwith%}
+<style>
+    input {
+        position: absolute;
+        left: 150px;
+    }
+</style>
 <div class="form">
     <h1>Deposit Money</h1>
 

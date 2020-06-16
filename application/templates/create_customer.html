@@ -1,8 +1,8 @@
-<!-- {% extends "layout.html" %}
+{% extends "layout.html" %}
 
 {% block title %} Create customer {% endblock %}
 
-{% block content %} -->
+{% block content %}
 
 {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -11,7 +11,17 @@
         {% endfor %}
     {% endif %}
 {% endwith%}
-
+<style>
+    input {
+        position: absolute;
+        left: 150px;
+    }
+    
+    select {
+        position: absolute;
+        left: 150px;
+    }
+</style>
 <div class="form">
     <h1 id="cst_head">Create Customer Screen</h1>
     <form action="" method="POST">
@@ -44,4 +54,4 @@
 
 </div>
 
-<!-- {% endblock %} -->
+{% endblock %}

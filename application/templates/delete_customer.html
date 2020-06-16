@@ -1,53 +1,41 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block title %} Delete Customer {% endblock %} {% block content %} {% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
+<p> {{ msg }} </p>
+{% endfor %} {% endif %} {% endwith%}
 
-{% block title %} Delete Customer {% endblock %}
-
-{% block content %}
-
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for msg in messages %}
-            <p> {{ msg }} </p>
-        {% endfor %}
-    {% endif %}
-{% endwith%}
-
-<div class="form">
-    <div class="wrapper">
-        <div class="deletecust">
-            <div class="deletecustheading">
-                <p><b>Delete Customer</b></p>
-            </div>
-            <div class="deleteform">
-                <form action="" method="POST">
-                    <table>
-                        <tr>
-                            <td><label for="ssn_id">SSN ID : </label></td>
-                            <td><input type="text" class="ssn-id" name="ssn_id" placeholder="12a5a6" required></td>
-                        </tr>
-                        <tr>
-                            <td><label for="customer_id">Customer Id : </label></td>
-                            <td><input type="number" class="custid" name="customer_id" placeholder="1234567" required></td>
-                        </tr>
-                        <tr>
-                            <td><label for="customer_name">Customer Name : </label></td>
-                            <td><input type="text" class="custname" name="customer_name" placeholder="Enter Name" required></td>
-                        </tr>
-                        <tr>
-                            <td><label for="age">Age : </label></td>
-                            <td><input type="number" class="age" name="age" placeholder="Enter Age" required></td>
-                        </tr>
-                        <tr>
-                            <td><label for="address">Address : </label></td>
-                            <td><input type="text" class="address" name="address" placeholder="Enter Address" required></td>
-                        </tr>
-                        <tr>
-                            <td><label for="confirmdel"><button type="submit" class="decor">Confirm Delete</span></button></label> </td>
-                            <td><label for="cancel"><button type="reset" class="cancelbutton"><a href="">Cancel</a></button></label> </td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
+<div class="wrapper">
+    <div class="deletecust">
+        <div class="deletecustheading">
+            <p><b>Delete Customer</b></p>
+        </div>
+        <div class="deleteform">
+            <form action="" method="POST">
+                <table>
+                    <tr>
+                        <td><label for="ssn_id">SSN ID : </label></td>
+                        <td><input type="text" class="ssn-id" name="ssn_id" placeholder="12a5a6" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="customer_id">Customer Id : </label></td>
+                        <td><input type="number" class="custid" name="customer_id" placeholder="1234567" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="customer_name">Customer Name : </label></td>
+                        <td><input type="text" class="custname" name="customer_name" placeholder="Enter Name" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="age">Age : </label></td>
+                        <td><input type="number" class="age" name="age" placeholder="Enter Age" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="address">Address : </label></td>
+                        <td><input type="text" class="address" name="address" placeholder="Enter Address" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="confirmdel"><button type="submit" class="decor">Confirm Delete</span></button></label> </td>
+                        <td><label for="cancel"><button type="reset" class="cancelbutton"><a href="">Cancel</a></button></label> </td>
+                    </tr>
+                </table>
+            </form>
         </div>
     </div>
 </div>
