@@ -427,7 +427,7 @@ def customer_status():
     return render_template('customer_status.html')
 
 
-@app.route('/deposit')
+@app.route('/deposit', methods=['GET', 'POST'])
 def deposit():
     if 'username' in session:
         if request.method == 'POST':
@@ -436,13 +436,33 @@ def deposit():
             acnt_type = request.form['acnt_type']
             amount = request.form['amount']
 
-            return render_template('Deposit.html')
+            account = Account.query.filter_by( id = acnt_id ).first()
+
+            if account == None:
+                flash('No customer exists with that account id')
+                return redirect( url_for('deposit') )
+            
+            if account.cust_id != int(cust_id):
+                flash('Account ID and Customer ID do not match')
+                return redirect( url_for('deposit') )
+            
+            if account.acnt_type != acnt_type:
+                flash('Account ID and Account type do not match')
+                return redirect( url_for('deposit') )
+            
+            account.bal = account.bal + int( amount )
+            account.acnt_msg = 'Amount deposited'
+            db.session.commit()
+
+            flash('Amount deposited successfully')
+            return redirect( url_for('deposit') )
         
     else:
         flash('You are logged out. Please login again')
         return redirect( url_for('login') )
     
     return render_template('Deposit.html')
+    
 
 @app.route('/withdraw')
 def withdraw():
