@@ -4,18 +4,19 @@
 
 {% block content %}
 
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for msg in messages %}
-                <p> {{ msg }} </p>
-            {% endfor %}
-        {% endif %}
-    {% endwith%}
-
 <div class="wrapper">
     <div class="deletecust">
         <div class="deletecustheading">
             <p><b>Delete Customer</b></p>
+            
+            {% with messages = get_flashed_messages() %}
+                 {% if messages %}
+                    {% for msg in messages %}
+                        <p> {{ msg }} </p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith%}
+
         </div>
         <div class="deleteform">
             <form action="" method="POST">

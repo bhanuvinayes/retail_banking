@@ -4,14 +4,6 @@
 
 {% block content %}
 
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for msg in messages %}
-                <p> {{ msg }} </p>
-            {% endfor %}
-        {% endif %}
-    {% endwith%}
-
 <style>
     input {
         position: absolute;
@@ -25,6 +17,14 @@
 </style>
 <div class="form">
     <h1>Deposit Money</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p> {{ msg }} </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith%}
 
     <form action="" method="POST">
         <label for="cust_id">Customer ID:</label>

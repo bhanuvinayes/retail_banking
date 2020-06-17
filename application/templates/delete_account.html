@@ -1,6 +1,8 @@
-{% extends "layout.html" %} {% block title %} Delete Account {% endblock %} {% block content %} {% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
-<p> {{ msg }} </p>
-{% endfor %} {% endif %} {% endwith%}
+{% extends "layout.html" %}
+
+{% block title %} Delete Account {% endblock %}
+
+{% block content %} 
 <style>
     input {
         position: absolute;
@@ -16,6 +18,15 @@
 <div class="form">
 
     <h1>Delete Account</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p> {{ msg }} </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith%}
+
     <form action="" method="POST">
         <label for="account_id">Account ID</label>
         <input type="number" name="account_id"><br><br><br>

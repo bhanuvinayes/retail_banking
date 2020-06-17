@@ -1,9 +1,21 @@
-{% extends "layout.html" %} {% block title %} Account Status {% endblock %} {% block content %} {% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
-<p> {{ msg }} </p>
-{% endfor %} {% endif %} {% endwith%}
+{% extends "layout.html" %}
 
-<div class="status">
+{% block title %} Account Status {% endblock %}
+
+{% block content %}
+
+<div class="form">
+
     <h1>Account Status</h1><br>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p> {{ msg }} </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith%}
+
     <table>
         <tr>
             <th>Customer Id</th>
@@ -24,11 +36,15 @@
             <td> {{ account.acnt_msg }} </td>
             <td> {{ account.bal }}</td>
             <td> {{ account.date }} </td>
-            <td> <a href="#">Refresh</a> </td>
+            <td> <a href="{{ url_for('account_status') }}">Refresh</a> </td>
         </tr>
         {% endfor %}
     </table>
     <br>
-    <button type="submit" value="Refresh the list">Refresh the list</button> </div>
+
+    <form action="{{ url_for('account_status') }}">
+    <button type="submit" value="Refresh the list">Refresh the list</button>
+    </form>
+</div>
 
 {% endblock %}
