@@ -1,19 +1,8 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block title %} Account Status {% endblock %} {% block content %} {% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
+<p> {{ msg }} </p>
+{% endfor %} {% endif %} {% endwith%}
 
-{% block title %} Account Status {% endblock %}
-
-{% block content %}
-
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for msg in messages %}
-            <p> {{ msg }} </p>
-        {% endfor %}
-    {% endif %}
-{% endwith%}
-
-<div class="form">
-
+<div class="status">
     <h1>Account Status</h1><br>
     <table>
         <tr>
@@ -28,19 +17,18 @@
         </tr>
         {% for account in accounts %}
         <tr>
-            <th> {{ account.cust_id }} </th>
-            <th> {{ account.id }} </th>
-            <th> {{ account.acnt_type }} </th>
-            <th> {{ account.acnt_status }} </th>
-            <th> {{ account.acnt_msg }} </th>
-            <th> {{ account.bal }}</th>
-            <th> {{ account.date }} </th>
-            <th> <a href="#">Refresh</a> </th>
+            <td> {{ account.cust_id }} </td>
+            <td> {{ account.id }} </td>
+            <td> {{ account.acnt_type }} </td>
+            <td> {{ account.acnt_status }} </td>
+            <td> {{ account.acnt_msg }} </td>
+            <td> {{ account.bal }}</td>
+            <td> {{ account.date }} </td>
+            <td> <a href="#">Refresh</a> </td>
         </tr>
         {% endfor %}
     </table>
     <br>
-    <button type="submit" value="Refresh the list">Refresh the list</button>
-</div>
+    <button type="submit" value="Refresh the list">Refresh the list</button> </div>
 
 {% endblock %}

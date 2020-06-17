@@ -1,65 +1,59 @@
-{% extends "layout.html" %} 
-{% block title %} Search Customer {% endblock %} 
-
-{% block content %} 
-    {% with messages = get_flashed_messages() %} 
-        {% if messages %} 
-            {% for msg in messages %}
-                 <p style="font-weight: bold;"> {{ msg }} </p>
-            {% endfor %}
-        {% endif %}
-    {% endwith%}
+{% extends "layout.html" %} {% block title %} Search Customer {% endblock %} {% block content %} {% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
+<p style="font-weight: bold;"> {{ msg }} </p>
+{% endfor %} {% endif %} {% endwith%}
 
 <style>
-    table, th, td {
-      border: 1px solid black;
+    table,
+    th,
+    td {
+        border: 1px solid black;
     }
 </style>
 
-        {% if customer %}
-            <table>
-                <tr>
-                    <th>Customer ID</th>
-                    <td>{{ customer.id }}</td>
-                </tr>
-                <tr>
-                    <th>Customer Name</th>
-                    <td>{{ customer.cname }}</td>
-                </tr>
-                <tr>
-                    <th>SSN ID</th>
-                    <td>{{ customer.ssn_id }}</td>
-                </tr>
-                <tr>
-                    <th>Age</th>
-                    <td>{{ customer.age }}</td>
-                </tr>
-                <tr>
-                    <th>Address</th>
-                    <td>{{ customer.address }}</td>
-                </tr>
-                <tr>
-                    <th>City</th>
-                    <td>{{ customer.city }}</td>
-                </tr>
-                <tr>
-                    <th>State</th>
-                    <td>{{ customer.state }}</td>
-                </tr>
-                <tr>
-                    <th>Status</th>
-                    <td>{{ customer.cust_status }}</td>
-                </tr>
-                <tr>
-                    <th>Message</th>
-                    <td>{{ customer.cust_msg }}</td>
-                </tr>
-                <tr>
-                    <th>Date</th>
-                    <td>{{ customer.date }}</td>
-                </tr>
-            </table>
-            <br>
-        {% endif %}
+{% if customer %}
+<div class="form">
+    <table>
+        <tr>
+            <th>Customer ID</th>
+            <td>{{ customer.id }}</td>
+        </tr>
+        <tr>
+            <th>Customer Name</th>
+            <td>{{ customer.cname }}</td>
+        </tr>
+        <tr>
+            <th>SSN ID</th>
+            <td>{{ customer.ssn_id }}</td>
+        </tr>
+        <tr>
+            <th>Age</th>
+            <td>{{ customer.age }}</td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td>{{ customer.address }}</td>
+        </tr>
+        <tr>
+            <th>City</th>
+            <td>{{ customer.city }}</td>
+        </tr>
+        <tr>
+            <th>State</th>
+            <td>{{ customer.state }}</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>{{ customer.cust_status }}</td>
+        </tr>
+        <tr>
+            <th>Message</th>
+            <td>{{ customer.cust_msg }}</td>
+        </tr>
+        <tr>
+            <th>Date</th>
+            <td>{{ customer.date }}</td>
+        </tr>
+    </table>
+    <br></div>
 
-{% endblock %}
+{% endif %} {% endblock %}

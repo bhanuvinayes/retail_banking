@@ -125,6 +125,12 @@ td {
     border-collapse: collapse;
 }
 
+.status {
+    position: absolute;
+    top: 200px;
+    left: 278px;
+}
+
 
 /* delete customer css start*/
 
@@ -176,7 +182,7 @@ td {
 .footer {
     position: absolute;
     left: 0px;
-    bottom: -696px;
+    bottom: -196px;
     width: 100%;
     background-color: black;
     color: blanchedalmond;

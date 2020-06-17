@@ -1,19 +1,8 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block title %} Customer Status {% endblock %} {% block content %} {% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
+<p> {{ msg }} </p>
+{% endfor %} {% endif %} {% endwith%}
 
-{% block title %} Customer Status {% endblock %}
-
-{% block content %}
-
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for msg in messages %}
-            <p> {{ msg }} </p>
-        {% endfor %}
-    {% endif %}
-{% endwith%}
-
-<div class="form">
-
+<div class="status">
     <h1>Customer Status</h1><br>
     <table>
         <tr>
@@ -27,19 +16,18 @@
         </tr>
         {% for customer in customers %}
         <tr>
-            <th> {{ customer.id }} </th>
-            <th> {{ customer.ssn_id }} </th>
-            <th> {{ customer.cust_status }}</th>
-            <th> {{ customer.cust_msg }}</th>
-            <th> {{ customer.date }} </th>
-            <th> <a href="#">Refresh</a> </th>
-            <th> <a href="#">View Profile</a> </th>
+            <td> {{ customer.id }} </td>
+            <td> {{ customer.ssn_id }} </td>
+            <td> {{ customer.cust_status }}</td>
+            <td> {{ customer.cust_msg }}</td>
+            <td> {{ customer.date }} </td>
+            <td> <a href="#">Refresh</a> </td>
+            <td> <a href="#">View Profile</a> </td>
         </tr>
         {% endfor %}
-        
+
     </table>
     <br>
-    <button type="submit" value="Refresh the list">Refresh the list</button>
-</div>
+    <button type="submit" value="Refresh the list">Refresh the list</button></div>
 
 {% endblock %}
