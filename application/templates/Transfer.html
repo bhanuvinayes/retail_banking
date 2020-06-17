@@ -25,23 +25,23 @@
         {% endif %}
     {% endwith%}
 
-    <form>
+    <form action="" method="POST">
         <label for="cust_id">Customer ID</label>
-        <input type="number" name="cust_id"><br><br>
+        <input type="number" name="cust_id" required><br><br>
         <label for="src_acnt_type">Source Account Type</label>
         <select id="Account" name="src_acnt_type">
                  <option value=""></option>
-                <option value="Type1">Savings</option>
-                <option value="Type2">Current</option>
+                <option value="Savings">Savings</option>
+                <option value="Current">Current</option>
             </select><br><br>
         <label for="tar_acnt_type">Target Account Type</label>
         <select id="Account" name="tar_acnt_type">
                 <option value=""></option>
-                <option value="Type1">Savings</option>
-                <option value="Type2">Current</option>
+                <option value="Savings">Savings</option>
+                <option value="Current">Current</option>
             </select><br><br>
         <label for="amount">Transfer Amount</label>
-        <input type="number" name="amount"><br><br>
+        <input type="number" name="amount" required><br><br>
         <button type="Transfer">Transfer</button>
     </form>
 

@@ -514,7 +514,7 @@ def withdraw():
     return render_template('withdraw.html')
 
 
-@app.route('/transfer')
+@app.route('/transfer', methods=['GET', 'POST'])
 def transfer():
     if 'username' in session:
         if request.method == 'POST':
@@ -522,8 +522,54 @@ def transfer():
             src_acnt_type = request.form['src_acnt_type']
             tar_acnt_type = request.form['tar_acnt_type']
             amount = request.form['amount']
+            accounts = 0
+            
+            if src_acnt_type == '' or tar_acnt_type == '':
+                flash('Source account type and target account type can not be blank')
+                return redirect( url_for('transfer') )
+            
+            if src_acnt_type == tar_acnt_type:
+                flash('Source account type and Target Account Type can not be same')
+                return redirect( url_for('transfer') )
 
-            return render_template('Transfer.html')
+            customers = Account.query.filter_by( cust_id = cust_id ).all()
+
+            if not customers:
+                flash('No customer exists with that Acccount ID')
+                return redirect( url_for('transfer') )
+            
+            for customer in customers:
+                accounts = accounts + 1
+            
+            if accounts == 1:
+                flash('This customer has only one account')
+            
+            if accounts == 2:
+                for customer in customers:
+                    if customer.acnt_type == 'Savings':
+                        savings_acnt = customer
+                    if customer.acnt_type == 'Current':
+                        current_acnt = customer
+                
+                if src_acnt_type == 'Savings':
+                    savings_acnt.bal = savings_acnt.bal - int( amount )
+                    savings_acnt.acnt_msg = 'Amount Transfered'
+                    db.session.commit()
+                    current_acnt.bal = current_acnt.bal + int( amount )
+                    current_acnt.acnt_msg = 'Amount Transfered'
+                    db.session.commit()
+                    flash('Amount Transfered Successfully')
+                    return redirect( url_for('transfer') )
+                
+                if src_acnt_type == 'Current':
+                    savings_acnt.bal = savings_acnt.bal + int( amount )
+                    savings_acnt.acnt_msg = 'Amount Transfered'
+                    db.session.commit()
+                    current_acnt.bal = current_acnt.bal - int( amount )
+                    current_acnt.acnt_msg = 'Amount Transfered'
+                    db.session.commit()
+                    flash('Amount Transfered Successfully')
+                    return redirect( url_for('transfer') )
     
     else:
         flash('You are logged out. Please login again')
