@@ -180,12 +180,20 @@ def delete_customer():
             address = request.form['address']
 
             customer = Customers.query.filter_by(ssn_id = ssn_id).first()
+            accounts = Account.query.filter_by( cust_id = customer_id ).all()
             if customer == None or str(customer.id) != customer_id or str(customer.ssn_id) != ssn_id or str(customer.cname) != customer_name or str(customer.age) != age or str(customer.address) != address:
                 flash('No customer with that that details found. Please enter correct details')
                 return redirect( url_for('delete_customer') )
             else:
                 db.session.delete(customer)
                 db.session.commit()
+                if not accounts:
+                    flash('Successfully deleted customer')
+                    return redirect( url_for('delete_customer') )
+                
+                for account in accounts:
+                    db.session.delete(account)
+                    db.session.commit()
                 flash('Successfully deleted customer')
                 return redirect( url_for('delete_customer') )
     
