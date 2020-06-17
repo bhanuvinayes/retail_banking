@@ -1,6 +1,9 @@
-{% extends "layout.html" %} {% block title %} Withdraw Amount {% endblock %} {% block content %} {% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
-<p> {{ msg }} </p>
-{% endfor %} {% endif %} {% endwith%}
+{% extends "layout.html" %}
+
+{% block title %} Withdraw Amount {% endblock %} 
+
+{% block content %} 
+
 <style>
     input {
         position: absolute;
@@ -12,21 +15,31 @@
         left: 150px;
     }
 </style>
+
 <div class="form">
     <h1>Withdraw Amount</h1>
-    <form>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p style="font-weight: bold;"> {{ msg }} </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith%}
+    
+    <form action="" method="POST">
         <label for="id">Customer ID:</label>
         <input type="number" name="cust_id"><br><br>
         <label for="id">Account ID:</label>
         <input type="number" name="acnt_id"><br><br>
         <label for="account_type">Account Type:</label>
-        <select id="Account type" name="account_type">
-            <option value="Saving">Savings</option>
+        <select id="Account type" name="acnt_type">
+            <option value="Savings">Savings</option>
             <option value="Current">Current</option>
         </select><br><br>
         <label for="amount">Withdraw Amount:</label>
         <input type="number" id="amount" name="amount"><br><br>
-        <button type="Submit">Submit</button>
+        <button type="Submit">Withdraw</button>
     </form>
 
 </div>

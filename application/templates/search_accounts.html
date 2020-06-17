@@ -1,6 +1,8 @@
-{% extends "layout.html" %} {% block title %} Search Customer {% endblock %} {% block content %} {% with messsages = get_flashed_messages() %} {% if messsages %} {% for msg in messsages %}
-<p> {{ msg }} </p>
-{% endfor %} {% endif %} {% endwith %}
+{% extends "layout.html" %}
+
+{% block title %} Search Customer {% endblock %}
+
+{% block content %} 
 <style>
     input {
         position: absolute;
@@ -14,6 +16,15 @@
 </style>
 <div class="form">
     <h1> Search account </h1>
+
+    {% with messsages = get_flashed_messages() %}
+        {% if messsages %}
+            {% for msg in messsages %}
+                <p> {{ msg }} </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <form action="" method="POST">
         <label for="account_id">Account ID</label>
         <input type="text" name="account_id"><br><br>

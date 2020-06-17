@@ -4,21 +4,23 @@
 
 {% block content %}
 
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for msg in messages %}
-            <p> {{ msg }} </p>
-        {% endfor %}
-    {% endif %}
-{% endwith%}
-
 <div class="form">
+    
 
     <h1>Customer Status</h1><br>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p> {{ msg }} </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith%}
     <table>
         <tr>
             <th> Customer Id </th>
             <th> Customer SSN Id </th>
+            <th> Name </th>
+            <th> Age </th>
             <th> Status </th>
             <th> Message </th>
             <th> Last Updated </th>
@@ -27,13 +29,15 @@
         </tr>
         {% for customer in customers %}
         <tr>
-            <th> {{ customer.id }} </th>
-            <th> {{ customer.ssn_id }} </th>
-            <th> {{ customer.cust_status }}</th>
-            <th> {{ customer.cust_msg }}</th>
-            <th> {{ customer.date }} </th>
-            <th> <a href="#">Refresh</a> </th>
-            <th> <a href="#">View Profile</a> </th>
+            <td> {{ customer.id }} </td>
+            <td> {{ customer.ssn_id }} </td>
+            <td> {{ customer.cname }}</td>
+            <td> {{ customer.age }}</td>
+            <td> {{ customer.cust_status }}</td>
+            <td> {{ customer.cust_msg }}</td>
+            <td> {{ customer.date }} </td>
+            <td> <a href="{{ url_for('customer_status') }}">Refresh</a> </td>
+            <td> <a href="">View Profile</a> </td>
         </tr>
         {% endfor %}
         

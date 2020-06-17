@@ -136,7 +136,7 @@ def search_customer():
             if ssn_id != "":
                 customer = Customers.query.filter_by( ssn_id = ssn_id).first()
                 if customer == None:
-                    flash('No customer with that ssn_id exists')
+                    flash('No customer with that SSN ID exists')
                     return redirect( url_for('search_customer') )
                 else:
                     flash('Following details found')
@@ -145,7 +145,7 @@ def search_customer():
             if customer_id != "":
                 customer = Customers.query.filter_by( id = customer_id).first()
                 if customer == None:
-                    flash('No customer with that customer id exists')
+                    flash('No customer with that Customer ID exists')
                     return redirect( url_for('search_customer') )
                 else:
                     flash('Following details found')
@@ -464,7 +464,7 @@ def deposit():
     return render_template('Deposit.html')
     
 
-@app.route('/withdraw')
+@app.route('/withdraw', methods=['GET', 'POST'])
 def withdraw():
     if 'username' in session:
         if request.method == 'POST':
@@ -473,7 +473,26 @@ def withdraw():
             acnt_type = request.form['acnt_type']
             amount = request.form['amount']
 
-            return render_template('withdraw.html')
+            account = Account.query.filter_by( id = acnt_id ).first()
+
+            if account == None:
+                flash('No customer exists with that Account ID')
+                return redirect( url_for('withdraw') )
+            
+            if account.cust_id != int(cust_id):
+                flash('Account ID and Customer ID do not match')
+                return redirect( url_for('withdraw') )
+            
+            if account.acnt_type != acnt_type:
+                flash('Account ID and Account type do not match')
+                return redirect( url_for('withdraw') )
+            
+            account.bal = account.bal - int( amount )
+            account.acnt_msg = 'Amount Withdrawn'
+            db.session.commit()
+
+            flash('Amount withdrawn successfully')
+            return redirect( url_for('withdraw') )
         
     else:
         flash('You are logged out. Please login again')
@@ -498,3 +517,4 @@ def transfer():
         return redirect( url_for('login') )
     
     return render_template('Transfer.html')
+
