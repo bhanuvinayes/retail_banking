@@ -203,13 +203,18 @@ def delete_customer():
     return render_template('delete_customer.html')
 
 
-# TODO Complete view function
 @app.route('/update_customer', methods=['GET', 'POST'])
 def update_customer():
-    return render_template('update_customer.html', customer = request.args.get('customer'))
+    if 'username' in session:
+        if request.method == 'POST':
+            flash("Update function not written")
+            return render_template('update_customer.html')
+    else:
+        flash('You have been logged out. Please login again')
+        return redirect( url_for('login') )
+    return render_template('update_customer.html')
 
 
-# TODO Complete
 @app.route('/create_account', methods=['GET', 'POST'])
 def create_account():
     if 'username' in session:
@@ -289,7 +294,7 @@ def delete_all():
     return render_template('delete_all.html')
 
 
-@app.route('/update_search', methods=['GET', 'POST'])
+# @app.route('/update_search', methods=['GET', 'POST'])
 def update_search():
     if 'username' in session:
         if request.method == 'POST':
@@ -526,3 +531,14 @@ def transfer():
     
     return render_template('Transfer.html')
 
+
+@app.route('/account_statement', methods=['GET', 'POST'])
+def account_statement():
+    if 'username' in session:
+        if request.method == 'POST':
+            flash('Account statement function not written')
+            return redirect( url_for('account_statement') )
+        return render_template('account_statement.html')
+    else:
+        flash('You are logged. Please login again')
+        return redirect( url_for('account_statement') )
