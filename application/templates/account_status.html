@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="form">
-    
+
     <h1>Account Status</h1><br>
 
     {% with messages = get_flashed_messages() %}
@@ -41,6 +41,7 @@
         {% endfor %}
     </table>
     <br>
+
     <form action="{{ url_for('account_status') }}">
     <button type="submit" value="Refresh the list">Refresh the list</button>
     </form>

@@ -5,8 +5,8 @@
 {% block content %}
 
 <div class="form">
-    
 
+<div class="status">
     <h1>Customer Status</h1><br>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -40,10 +40,9 @@
             <td> <a href="">View Profile</a> </td>
         </tr>
         {% endfor %}
-        
+
     </table>
     <br>
-    <button type="submit" value="Refresh the list">Refresh the list</button>
-</div>
+    <button type="submit" value="Refresh the list">Refresh the list</button></div>
 
 {% endblock %}
