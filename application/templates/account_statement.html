@@ -1,30 +1,59 @@
 {% extends "layout.html" %}
 
-{% block title %} Withdraw Amount {% endblock %} 
+{% block title %} Account Statement {% endblock %}
 
-{% block content %} 
+{% block content %}
 
-<style>
-    input {
-        position: absolute;
-        left: 150px;
-    }
-</style>
 <div class="form">
-    <h1> Account Statement</h1>
+    <h1>Account statement</h1><br>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for msg in messages %}
-                <p>{{ msg }}</p>
+                <p> {{ msg }} </p>
             {% endfor %}
         {% endif %}
-    {% endwith %}
-
+    {% endwith%}
     <form action="" method="POST">
-        Account ID:<input type="text"> <br>
-        <input type="radio" name=transaction>Last number of transactions<br>
-        <input type="radio" name=transaction>Start-End dates<br> Number of transactions <input type="number"><br>
-        <button type="submit" value="submit">Submit</button>
+        Account Id:<input type="text"><br>
+        <br> Start date*:<input type="date"><br>
+        <br> End date*:<input type="date"><br>
+        <br>
+        <p style="color: red;">
+            (*)fields are mandatory
+        </p>
+
+        <button type="submit" name="submit">Submit</button> <br>
+
+        <!-- <br>
+        <table>
+            <tr>
+                <th>Transaction Id</th>
+                <th>Discription</th>
+                <th>Date(YYYY-MM-DD)</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </table>
+        <button type="button" name="Download as Pdf">Download as Pdf file</button><button type="button" name="download as excel file">Download as Excel file</button> -->
+
     </form>
 </div>
 
