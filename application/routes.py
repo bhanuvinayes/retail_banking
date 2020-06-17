@@ -3,12 +3,14 @@ from flask import render_template, request, session, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+# Table for employees
 class Employees(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     uname = db.Column(db.String(20))
     password = db.Column(db.String(20))
     date_created = db.Column(db.DateTime, default=datetime.now)
 
+# Table for customers
 class Customers(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     ssn_id = db.Column(db.Integer)
@@ -21,6 +23,8 @@ class Customers(db.Model):
     cust_status = db.Column(db.String(20))
     date = db.Column(db.DateTime, default=datetime.now)
 
+
+# Table for accounts
 class Account(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     cust_id = db.Column(db.Integer)
@@ -292,48 +296,6 @@ def delete_all():
         flash('Deleted all customers record')
         return render_template('delete_all.html')
     return render_template('delete_all.html')
-
-
-# @app.route('/update_search', methods=['GET', 'POST'])
-def update_search():
-    if 'username' in session:
-        if request.method == 'POST':
-            ssn_id = request.form['ssn_id']
-            customer_id = request.form['customer_id']
-
-            if ssn_id != "":
-                customer = Customers.query.filter_by(ssn_id = ssn_id).first()
-                if customer == None:
-                    flash('No customer with that ssn_id exists')
-                    return redirect( url_for('update_search') )
-                else:
-                    flash('Following details found')
-                    return render_template('update_customer.html', customer = customer)
-            
-            if customer_id != "":
-                customer = Customers.query.filter_by(id = customer_id).first()
-                if customer == None:
-                    flash('No customer with that customer id exists')
-                    return redirect( url_for('update_search') )
-                else:
-                    flash('Following details found')
-                    return redirect( url_for('update_customer', customer = customer))
-            
-            if ssn_id == "" and customer_id == "":
-                flash('Enter either snn_id or customer id to search')
-                return redirect( url_for('update_search') )
-
-        # ssn_id = request.form['ssn_id']
-        # customer_id = request.form['customer_id']
-        # if customer_id == "":
-        #     return render_template('update_search.html', ssn_id = ssn_id, customer_id = customer_id)
-        # else:
-        #      return redirect( url_for('login') )
-    
-    else:
-        return redirect( url_for('login') )
-    
-    return render_template('update_search.html')
 
 
 @app.route('/search_accounts', methods=['GET', 'POST'])
