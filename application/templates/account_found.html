@@ -3,6 +3,8 @@
 
 {% block content %} 
 
+<div class="status">
+
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for msg in messages %}
@@ -47,5 +49,5 @@
         <td>{{ account.date }}</td>
     </tr>
 </table>
-
+</div>
 {% endblock %}

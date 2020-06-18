@@ -22,7 +22,7 @@
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for msg in messages %}
-                <p style="font-weight: bold;"> {{ msg }} </p>
+                <p> {{ msg }} </p>
             {% endfor %}
         {% endif %}
     {% endwith%}
